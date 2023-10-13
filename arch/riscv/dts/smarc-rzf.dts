@@ -64,6 +64,8 @@
 &sdhi0 {
 	bus-width = <8>;
 	status = "okay";
+	/* This is used for interface that support both eMMC and SD in board */
+	mutual-channel;
 };
 
 &sdhi1 {
@@ -92,6 +94,7 @@
         #address-cells = <1>;
         #size-cells = <0>;
         flash0: spi-flash@0 {
+		u-boot,dm-spl;
                 #address-cells = <1>;
                 #size-cells = <1>;
                 compatible = "spi-flash", "jedec,spi-nor";
@@ -113,4 +116,9 @@
 	phy1: ethernet-phy@7 {
 		reg = <7>;
 	};
+};
+
+&wdt0 {
+	status = "okay";
+	timeout-sec = <60>;
 };
